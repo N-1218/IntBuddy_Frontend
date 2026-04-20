@@ -45,8 +45,8 @@ function ExperianceForm2() {
         </div>
 
         <div className="d-flex justify-content-between mt-4">
-          <Link className="btn btn-warning px-4" to="/Profile">Next →</Link>
-          <Link className="btn btn-outline-warning px-4">Save</Link>
+          <Link className="btn btn-warning px-4" to="/">Next →</Link>
+          <Link className="btn btn-outline-warning px-4">submit</Link>
         </div>
 
       </div>

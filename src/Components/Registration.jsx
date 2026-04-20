@@ -1,89 +1,145 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import  axios from "axios";
 
 function Registration() {
   const [show, setShow] = useState(false);
-  useEffect(function () { setShow(true); }, []);
 
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", backgroundColor: "#f8f9fa", marginTop: "60px" }}>
-      <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "900px", transform: show ? "translateY(0)" : "translateY(60px)", opacity: show ? 1 : 0, transition: "all 0.8s ease" }}>
-        <div className="row align-items-center">
+    <div className="container d-flex justify-content-center align-items-center"
+         style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
 
-          <div className="col-md-6 text-center p-4">
-            <h2 className="fw-bold mb-3">Join IntBuddy ...!</h2>
-            <p className="text-muted">Share your interview experience and help others succeed in their career journey.</p>
+      <div className="card shadow-lg p-4"
+           style={{
+             width: "800px",
+             transform: show ? "scale(1)" : "scale(0.95)",
+             opacity: show ? 1 : 0,
+             transition: "all 0.5s ease"
+           }}>
+
+        <div className="row">
+
+          {/* Left Side */}
+          <div className="col-md-5 text-center d-flex flex-column justify-content-center">
+
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
+              alt="icon"
+              style={{ width: "60px", margin: "0 auto 10px" }}
+            />
+
+            {/* Animated Text */}
+            <h3 className="fw-bold animated-text">Join IntBuddy 🚀</h3>
+
+            <p className="text-muted animated-text delay">
+              Share your interview experience and help others grow.
+            </p>
+
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+              alt="icon"
+              style={{ width: "70px", margin: "10px auto 0" }}
+            />
           </div>
 
-          <div className="col-md-6 p-4">
+          {/* Right Side Form */}
+          <div className="col-md-7">
             <h5 className="text-center mb-3">Create Account</h5>
 
             <form>
-              <div className="row mb-3">
+              <div className="row">
                 <div className="col-6">
-                  <input type="text" className="form-control" placeholder="First Name" />
+                  <input type="text" className="form-control mb-3" placeholder="Full Name" />
                 </div>
                 <div className="col-6">
-                  <input type="text" className="form-control" placeholder="Last Name" />
+                  <input type="email" className="form-control mb-3" placeholder="Email" />
                 </div>
               </div>
 
-              <div className="mb-3">
-                <input type="email" className="form-control" placeholder="Email Address" />
-              </div>
+              <input type="text" className="form-control mb-3" placeholder="Contact Number" />
 
               <div className="mb-3">
-                <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="gender" />
-                  <label className="form-check-label">Male</label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="gender" />
-                  <label className="form-check-label">Female</label>
-                </div>
+                <label className="fw-semibold">Gender</label><br />
+                <label className="me-3">
+                  <input type="radio" name="gender" /> Male
+                </label>
+                <label>
+                  <input type="radio" name="gender" /> Female
+                </label>
               </div>
 
-              <div className="mb-3">
-                <input type="password" className="form-control" placeholder="Password" />
-              </div>
-
-              <div className="mb-3">
-                <input type="password" className="form-control" placeholder="Re-enter Password" />
-              </div>
-
-              <div className="mb-3">
-                <Link className="btn btn-warning w-10">Verify</Link>
-              </div>
-
-              <div className="row mb-3">
+              <div className="row">
                 <div className="col-6">
-                  <select className="form-control">
+                  <input type="password" className="form-control mb-3" placeholder="Password" />
+                </div>
+                <div className="col-6">
+                  <input type="password" className="form-control mb-3" placeholder="Confirm Password" />
+                </div>
+              </div>
+
+              <div className="text-center mb-3">
+                <button type="button" className="btn btn-warning btn-sm px-4">
+                  Verify
+                </button>
+              </div>
+
+              <div className="row">
+                <div className="col-6">
+                  <select className="form-control mb-3">
                     <option>Country</option>
                     <option>India</option>
                     <option>USA</option>
                   </select>
                 </div>
                 <div className="col-6">
-                  <select className="form-control">
+                  <select className="form-control mb-3">
                     <option>State</option>
-                    <option>Delhi</option>
                     <option>Maharashtra</option>
+                    <option>Delhi</option>
                   </select>
                 </div>
               </div>
 
-              <Link className="btn btn-warning w-100" >Register</Link>
+              <input type="text" className="form-control mb-3" placeholder="LinkedIn URL" />
+              <input type="text" className="form-control mb-3" placeholder="Naukri URL" />
+
+              <button className="btn btn-warning w-100">Register</button>
             </form>
 
             <div className="text-center mt-3">
               Already have an account? <Link to="/Login">Login</Link>
             </div>
-
           </div>
+
         </div>
       </div>
+
+      {/* Animation CSS */}
+      <style>
+        {`
+          .animated-text {
+            animation: fadeUp 1s ease-in-out;
+          }
+
+          .animated-text.delay {
+            animation-delay: 0.5s;
+          }
+
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }

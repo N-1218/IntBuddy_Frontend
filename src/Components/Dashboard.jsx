@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function CustomerDashboard() {
   const user = {
     name: "Namrata",
@@ -10,7 +10,7 @@ function CustomerDashboard() {
     <div className="container-fluid">
       <div className="row">
 
-        {/* ✅ Sidebar */}
+        {/* Sidebar */}
         <div
           className="col-md-3 col-lg-2 bg-dark text-white p-3 position-fixed"
           style={{ top: "70px",
@@ -32,19 +32,19 @@ function CustomerDashboard() {
               </button>
             </li>
             <li className="nav-item mb-2">
-              <button className="btn btn-outline-light w-100">
-                Experience
-              </button>
+              <Link className="btn btn-outline-light w-100" to='/Profile'> 
+                             Experience Form
+              </Link>
             </li>
             <li className="nav-item mt-4">
-              <button className="btn btn-danger w-100">
+              <button className="btn btn-warning w-100">
                 Logout
               </button>
             </li>
           </ul>
         </div>
 
-        {/* ✅ Main Content */}
+        {/* Main Content */}
         <div
           className="col-md-9 col-lg-10 offset-md-3 offset-lg-2 p-4 text-center"
           style={{ marginTop: "70px" }}

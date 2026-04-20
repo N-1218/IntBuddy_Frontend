@@ -12,6 +12,19 @@ function ExperienceForm() {
         <h5 className="fw-bold mb-3">Information</h5>
 
         <div className="row">
+          <div className="mb-4">
+          <label className="form-label fw-semibold">Do you want to stay anonymous?</label>
+          <div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="radio" name="anon" id="yes" />
+              <label className="form-check-label" htmlFor="yes">Yes</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="radio" name="anon" id="no" />
+              <label className="form-check-label" htmlFor="no">No</label>
+            </div>
+          </div>
+        </div>
 
           <div className="col-md-6 mb-4">
             <label className="form-label fw-semibold">Company you applied to? <span className="text-danger">*</span></label>
@@ -56,17 +69,29 @@ function ExperienceForm() {
               <option>Delhi</option>
             </select>
           </div>
+         </div>
 
-          <div className="col-md-6 mb-4">
-            <label className="form-label fw-semibold">Referrer Email Id</label>
-            <input type="email" className="form-control" />
+          <div className="mb-4">
+          <label className="form-label fw-semibold">Your Experience Level <span className="text-danger">*</span></label>
+          <div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="radio" name="exp" />
+              <label className="form-check-label">Fresher</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="radio" name="exp" />
+              <label className="form-check-label">0 - 2 Years</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="radio" name="exp" />
+              <label className="form-check-label">2+ Years</label>
+            </div>
           </div>
-
         </div>
 
         <div className="d-flex justify-content-between mt-4">
-          <Link className="btn btn-warning px-4" to="/Profile">Next →</Link>
-          <button className="btn btn-outline-warning px-4">Save</button>
+          <Link className="btn btn-warning px-4" to="/ExperianceForm2">Next →</Link>
+          <Link className="btn btn-outline-warning px-4">Back</Link>
         </div>
 
       </div>

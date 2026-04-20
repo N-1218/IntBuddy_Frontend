@@ -9,7 +9,7 @@ import About from "./Components/About";
 import Footer from "./Components/Footer";
 import Benefits from "./Components/Benefit";
 import ExperianceForm from "./Components/ExperianceFrom";
-import Profile from "./Components/Profile";
+
 import ExperianceForm2 from "./Components/ExperianceFrom2";
 import CustomerDashboard from "./Components/Dashboard";
 
@@ -34,7 +34,6 @@ function App() {
         <Route path="/Registration" element={<Registration />} />
         <Route path="/About" element={<About />} />
         <Route path="/ExperianceForm" element={<ExperianceForm />} />
-        <Route path="/Profile" element={<Profile />} />
         <Route path="/CustomerDashboard" element={<CustomerDashboard />} />
         <Route path="/ExperianceForm2" element={<ExperianceForm2 />} />
       </Routes>

@@ -37,7 +37,7 @@ function Home() {
                     </p>
 
                     <Link
-                        to="/ExperianceForm"
+                        to="/Profile"
                         className="btn btn-warning btn-lg mt-3 rounded-pill"
                     >
                         Share Your Experience
