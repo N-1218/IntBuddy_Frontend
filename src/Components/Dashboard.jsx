@@ -32,9 +32,7 @@ function CustomerDashboard() {
               </button>
             </li>
             <li className="nav-item mb-2">
-              <Link className="btn btn-outline-light w-100" to='/Profile'> 
-                             Experience Form
-              </Link>
+              <Link className="btn btn-outline-light w-100" to='/ExperianceForm'>Experience Form </Link>
             </li>
             <li className="nav-item mt-4">
               <button className="btn btn-warning w-100">

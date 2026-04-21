@@ -26,6 +26,7 @@ function App() {
           <>
             <Home />
             <Benefits />
+            <About/>
             <Card />
           </>
         } />

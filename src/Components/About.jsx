@@ -22,8 +22,7 @@ function About() {
           }}
         >
           <div className="col-md-8">
-            <span className="text-uppercase text-secondary fw-semibold">Our Platform</span>
-            <h2 className="display-4 fw-bold mt-2">About Us</h2>
+            <h2 className="display-4 fw-bold mt-2">About Us Story...</h2>
             <p className="lead text-muted">
               Helping students and job seekers share real interview experiences.
             </p>

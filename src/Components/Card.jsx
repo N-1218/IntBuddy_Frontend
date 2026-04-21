@@ -7,10 +7,7 @@ function Card() {
 
   return (
     <div className="container-fluid py-5 bg-light text-center mt-5" style={{ paddingTop: "60px" }}>
-
-      <h2 className="fw-bold mb-5" style={{ opacity: show ? 1 : 0, transform: show ? "translateY(0)" : "translateY(-20px)", transition: "all 0.6s ease" }}>
-        How To Participate ?
-      </h2>
+      <h2 className="fw-bold mb-5 text-dark display-5 d-inline-block" style={{opacity: show ? 1 : 0,transform: show ? "translateY(0)" : "translateY(-30px)", transition: "all 0.6s ease",animation: "float 3s ease-in-out infinite" }}>  How To Participate ?</h2>
 
       <div className="row justify-content-center">
 
@@ -34,7 +31,7 @@ function Card() {
 
       </div>
 
-      <Link to="/share" className="btn btn-warning px-4 py-2 fw-semibold mt-4 shadow" style={{ opacity: show ? 1 : 0, transform: show ? "scale(1)" : "scale(0.8)", transition: "all 0.8s ease" }}>
+      <Link to="/share" className="btn btn-primary px-4 py-2 fw-semibold mt-4 shadow" style={{ opacity: show ? 1 : 0, transform: show ? "scale(1)" : "scale(0.8)", transition: "all 0.8s ease" }}>
         Share your Story
       </Link>
 

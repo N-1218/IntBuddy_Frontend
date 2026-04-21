@@ -1,0 +1,25 @@
+/* 1. Animation for the Badges (More movement) */
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* 2. Animation for the Text/Heading (Subtle movement + slight tilt) */
+@keyframes textFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+}
+
+/* 3. Helper Classes to apply to your HTML */
+.float-infinite {
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.animate-text-float {
+  animation: textFloat 5s ease-in-out infinite;
+}
+
+/* Optional: Different speed for the heading to make it feel natural */
+.animate-heading-float {
+  animation: badgeFloat 6s ease-in-out infinite;
+}

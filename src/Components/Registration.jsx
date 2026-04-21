@@ -32,7 +32,7 @@ function Registration() {
             />
 
             {/* Animated Text */}
-            <h3 className="fw-bold animated-text">Join IntBuddy 🚀</h3>
+            <h3 className="fw-bold animated-text">Join IntBuddy ...!</h3>
 
             <p className="text-muted animated-text delay">
               Share your interview experience and help others grow.
