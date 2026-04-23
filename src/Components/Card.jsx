@@ -31,9 +31,7 @@ function Card() {
 
       </div>
 
-      <Link to="/share" className="btn btn-primary px-4 py-2 fw-semibold mt-4 shadow" style={{ opacity: show ? 1 : 0, transform: show ? "scale(1)" : "scale(0.8)", transition: "all 0.8s ease" }}>
-        Share your Story
-      </Link>
+      
 
     </div>
   );

@@ -30,7 +30,7 @@ function App() {
             <Card />
           </>
         } />
-
+          <Route path="/Home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Registration" element={<Registration />} />
         <Route path="/About" element={<About />} />

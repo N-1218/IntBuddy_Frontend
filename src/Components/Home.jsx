@@ -1,111 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "../assets/hero.jpg";
+import ExperienceForm from "./ExperianceFrom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Home() {
-  return (
-    <div className="container-fluid min-vh-100 d-flex align-items-center bg-light overflow-hidden">
-      <div className="container">
-        <div className="row align-items-center">
+  const [showForm, setShowForm] = useState(false);
 
-          {/* LEFT SIDE: Floating Text Content */}
-          <div className="col-md-6 text-center text-md-start animate-text-float">
-            <h1 className="fw-bold display-5">
-              Land your dream tech job with <br />
-              <span className="text-primary">expert coaching</span>
-            </h1>
-            <p className="text-muted mt-3">
-              Get 1:1 mock interviews, mentorship, and resume reviews from 
-              professionals at top tech companies.
-            </p>
-            <div className="input-group mt-4 shadow-sm rounded-pill overflow-hidden bg-white">
-              <input 
-                type="text" 
-                className="form-control border-0 ps-4" 
-                placeholder="What do you want to get better at?" 
-              />
-              <button className="btn btn-primary px-4">Search</button>
+  const fullBlendMask = {
+    WebkitMaskImage:
+      "radial-gradient(ellipse 65% 50% at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)",
+    maskImage:
+      "radial-gradient(ellipse 65% 50% at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)",
+    objectFit: "cover",
+    width: "140%",
+    height: "110vh",
+    maxWidth: "1800px",
+    filter: "drop-shadow(0 0 20px rgba(0,0,0,0.1))",
+  };
+
+  return (
+    <>
+      {/* HOME BACKGROUND */}
+      <div
+        className={`container-fluid min-vh-100 d-flex align-items-center bg-light p-0 overflow-hidden ${
+          showForm ? "pe-none user-select-none" : ""
+        }`}
+        style={{
+          filter: showForm ? "blur(6px)" : "none",
+          transition: "0.3s ease",
+        }}
+      >
+        <div className="row w-100 m-0 align-items-center">
+
+          {/* LEFT */}
+          <div className="col-lg-5 col-xl-4 offset-xl-1 text-center text-lg-start">
+            <div className="border-start border-warning border-5 ps-4 py-3">
+
+              <h1 className="fw-bold display-2 lh-1 text-dark mb-3">
+                Land your <br />
+                <span className="text-warning">Tech Dream.</span>
+              </h1>
+
+              <p className="lead text-secondary mt-3 fs-4 mb-5">
+                Experience 1:1 coaching from elite tech professionals.
+              </p>
+
+              <button
+                className="btn btn-warning rounded-pill px-5 py-3 fw-bold shadow-lg"
+                onClick={() => setShowForm(true)}
+              >
+                Share Experience <i className="bi bi-arrow-right ms-2"></i>
+              </button>
+
             </div>
           </div>
 
-          {/* RIGHT SIDE: Image & Badge Galaxy */}
-          <div className="col-md-6 position-relative mt-5 mt-md-0 d-flex justify-content-center align-items-center">
-            
-            /* BACKGROUND GLOW */
-            <div 
-              className="position-absolute bg-primary rounded-circle opacity-10"
-              style={{ width: "450px", height: "450px", filter: "blur(60px)", zIndex: 0 }}
+          {/* RIGHT */}
+          <div className="col-lg-7 p-0 d-flex justify-content-center align-items-center position-relative min-vh-100">
+
+            {/* Glow */}
+            <div
+              className="position-absolute top-50 start-50 translate-middle"
+              style={{
+                width: "150%",
+                height: "150%",
+                background:
+                  "radial-gradient(circle, rgba(255,193,7,0.2) 0%, transparent 70%)",
+                filter: "blur(100px)",
+              }}
             ></div>
 
-            {/* MAIN IMAGE CONTAINER */}
-        
-            <div className="position-relative float-infinite" style={{ animationDuration: "6s" }}>
-              <img src={Hero}  alt="mentor"className="img-fluid shadow-lg rounded-5"  style={{ width: "450px",  zIndex: 2, maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"
-                }}/>
-
-              {/* --- BADGES --- */}
-              
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, top: '-10%', right: '-10%', animationDelay: '0s' }}>
-                <i className="bi bi-google text-danger"></i>
-                <small className="fw-bold">Google</small>
-              </div>
-
-         
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, bottom: '5%', left: '-15%', animationDelay: '1.2s' }}>
-                <i className="bi bi-cpu-fill text-primary"></i>
-                <small className="fw-bold">Meta</small>
-              </div>
-
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, top: '45%', right: '-25%', animationDelay: '0.5s' }}>
-                <i className="bi bi-bag-fill text-warning"></i>
-                <small className="fw-bold">Amazon</small>
-              </div>
-
-           
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, top: '15%', left: '-20%', animationDelay: '2s' }}>
-                <i className="bi bi-microsoft text-success"></i>
-                <small className="fw-bold">Microsoft</small>
-              </div>
-
-             
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, bottom: '15%', right: '-15%', animationDelay: '0.8s' }}>
-                <i className="bi bi-play-fill text-danger"></i>
-                <small className="fw-bold">Netflix</small>
-              </div>
-
-            
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, top: '70%', left: '-20%', animationDelay: '2.5s' }}>
-                <i className="bi bi-apple text-dark"></i>
-                <small className="fw-bold">Apple</small>
-              </div>
-
-             
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, top: '-15%', left: '10%', animationDelay: '3s' }}>
-                <i className="bi bi-brush text-danger"></i>
-                <small className="fw-bold">Adobe</small>
-              </div>
-
-            
-              <div className="position-absolute bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2 float-infinite" 
-                style={{ zIndex: 3, bottom: '-10%', right: '15%', animationDelay: '1.5s' }}>
-                <i className="bi bi-car-front-fill text-dark"></i>
-                <small className="fw-bold">Uber</small>
-              </div>
-
+            {/* Image */}
+            <div className="position-relative w-100 h-100 d-flex justify-content-center align-items-center">
+              <img
+                src={Hero}
+                alt="mentor"
+                style={fullBlendMask}
+                className="position-relative"
+              />
             </div>
           </div>
-
         </div>
       </div>
-    </div>
+
+      {/* MODAL */}
+      {showForm && (
+        <ExperienceForm closeModal={() => setShowForm(false)} />
+      )}
+    </>
   );
 }
 
