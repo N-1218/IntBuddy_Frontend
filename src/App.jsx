@@ -9,7 +9,7 @@ import About from "./Components/About";
 import Footer from "./Components/Footer";
 import Benefits from "./Components/Benefit";
 import ExperianceForm from "./Components/ExperianceFrom";
-import Otp from "./Components/OTP";
+
 
 import ExperianceForm2 from "./Components/ExperianceFrom2";
 import CustomerDashboard from "./Components/Dashboard";
@@ -38,7 +38,6 @@ function App() {
         <Route path="/ExperianceForm" element={<ExperianceForm />} />
         <Route path="/CustomerDashboard" element={<CustomerDashboard />} />
         <Route path="/ExperianceForm2" element={<ExperianceForm2 />} />
-         <Route path="/OTP" element={<Otp />} />
       </Routes>
 
       {!hideFooter && <Footer />}

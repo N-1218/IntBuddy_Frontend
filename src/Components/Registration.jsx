@@ -7,6 +7,9 @@ function Registration() {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpVerified, setOtpVerified] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,15 +34,12 @@ function Registration() {
     }
 
     if (name === "password") {
-      const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
-      if (value && !passwordRegex.test(value)) {
-        error =
-          "Min 8 chars, include uppercase, lowercase, number & special char";
-      }
-    }
-
+  if (value && !passwordRegex.test(value)) {
+    error = "Minimum 8 characters, include letters and numbers";
+  }
+}
     if (name === "confirmPassword") {
       if (value && value !== formData.password) {
         error = "Passwords do not match";
@@ -61,54 +61,86 @@ function Registration() {
 
     setErrors((prev) => ({
       ...prev,
-      [name]: errorMsg
+      [name]: errorMsg,
+      general: ""
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // SEND OTP
+  const sendOtp = async () => {
+    if (!formData.email || !formData.phone) {
+      setErrors({ general: "Enter email and phone first" });
+      return;
+    }
 
-    if (loading) return;
+    if (otpSent) return;
 
-    let newErrors = {};
+    try {
+      setLoading(true);
 
-    Object.keys(formData).forEach((key) => {
-      const err = validateField(key, formData[key]);
-      if (err) newErrors[key] = err;
-    });
+      await axios.post("http://localhost:8080/users/send-otp", {
+        email: formData.email,
+        phone: formData.phone
+      });
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+      setOtpSent(true);
+      setErrors({});
+    } catch (err) {
+      setErrors((prev) => ({
+        ...prev,
+        general: err.response?.data?.message || "Failed to send OTP"
+      }));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // VERIFY OTP
+  const verifyOtp = async () => {
+    if (!otp) {
+      setErrors({ general: "Enter OTP first" });
       return;
     }
 
     try {
       setLoading(true);
 
-      // 🔥 SEND OTP (instead of register)
-      await axios.post("http://localhost:8080/users/send-otp", {
+      await axios.post("http://localhost:8080/users/verify-otp", {
         email: formData.email,
-        phone: formData.phone
+        otp: otp.trim()
       });
 
-      // 🔥 STORE FORM DATA
-      localStorage.setItem("registerData", JSON.stringify(formData));
-
-      // 🔥 REDIRECT TO OTP PAGE
-      navigate("/otp");
-
+      setOtpVerified(true);
+      setErrors({});
     } catch (err) {
-      if (err.response?.status === 409) {
-        setErrors((prev) => ({
-          ...prev,
-          email: "User already exists"
-        }));
-      } else {
-        setErrors((prev) => ({
-          ...prev,
-          general: err.response?.data?.message || "Failed to send OTP"
-        }));
-      }
+      setErrors((prev) => ({
+        ...prev,
+        general: err.response?.data?.message || "Invalid OTP"
+      }));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // FINAL REGISTER
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!otpVerified) {
+      setErrors({ general: "Please verify OTP first" });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      await axios.post("http://localhost:8080/users/register", formData);
+
+      navigate("/login");
+    } catch (err) {
+      setErrors({
+        general: err.response?.data?.message || "Registration failed"
+      });
     } finally {
       setLoading(false);
     }
@@ -144,96 +176,72 @@ function Registration() {
 
             <form onSubmit={handleSubmit}>
 
+              {/* YOUR SAME FIELDS — NO CHANGE */}
               <div className="row">
                 <div className="col-6">
-                  <input
-                    name="name"
-                    value={formData.name}
-                    className="form-control mb-3"
-                    placeholder="Full Name"
-                    onChange={handleChange}
-                    required
-                  />
+                  <input name="name" value={formData.name} className="form-control mb-3" placeholder="Full Name" onChange={handleChange} required />
                 </div>
 
                 <div className="col-6">
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    className="form-control mb-1"
-                    placeholder="Email"
-                    onChange={handleChange}
-                    required
-                  />
+                  <input type="email" name="email" value={formData.email} className="form-control mb-1" placeholder="Email" onChange={handleChange} required />
                   <small className="text-danger">{errors.email}</small>
                 </div>
               </div>
 
-              <input
-                name="phone"
-                value={formData.phone}
-                className="form-control mb-1"
-                placeholder="Contact Number"
-                onChange={handleChange}
-                required
-              />
+              <input name="phone" value={formData.phone} className="form-control mb-1" placeholder="Contact Number" onChange={handleChange} required />
               <small className="text-danger">{errors.phone}</small>
 
               <div className="mb-3 mt-2">
                 <label className="fw-semibold">Gender</label><br />
                 {["Male", "Female"].map((g) => (
                   <label key={g} className="me-3">
-                    <input
-                      type="radio"
-                      name="gender"
-                      value={g}
-                      checked={formData.gender === g}
-                      onChange={handleChange}
-                      required
-                    />{" "}
-                    {g}
+                    <input type="radio" name="gender" value={g} checked={formData.gender === g} onChange={handleChange} required /> {g}
                   </label>
                 ))}
               </div>
 
               <div className="row">
                 <div className="col-6">
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    className="form-control mb-1"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                  />
+                  <input type="password" name="password" value={formData.password} className="form-control mb-1" placeholder="Password" onChange={handleChange} required />
                   <small className="text-danger">{errors.password}</small>
                 </div>
 
                 <div className="col-6">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    className="form-control mb-1"
-                    placeholder="Confirm Password"
-                    onChange={handleChange}
-                    required
-                  />
+                  <input type="password" name="confirmPassword" value={formData.confirmPassword} className="form-control mb-1" placeholder="Confirm Password" onChange={handleChange} required />
                   <small className="text-danger">{errors.confirmPassword}</small>
                 </div>
               </div>
 
-              <div className="row">
+              {/* OTP BUTTON */}
+              {formData.password &&
+                formData.confirmPassword &&
+                formData.password === formData.confirmPassword &&
+                !otpVerified && (
+                  <button type="button" className="btn btn-info w-100 mt-2" onClick={sendOtp} disabled={loading}>
+                    {loading ? "Sending..." : "Send OTP"}
+                  </button>
+                )}
+
+              {/*  OTP INPUT */}
+              {otpSent && !otpVerified && (
+                <>
+                  <input type="text" className="form-control mt-2" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+                  <button type="button" className="btn btn-success w-100 mt-2" onClick={verifyOtp} disabled={loading}>
+                    Verify OTP
+                  </button>
+                </>
+              )}
+
+              {otpVerified && (
+                <div className="text-success mt-2 text-center">
+                  OTP Verified ✔
+                </div>
+              )}
+
+              {/* REMAINING FIELDS SAME */}
+              <div className="row mt-2">
                 <div className="col-6">
-                  <select
-                    name="country"
-                    value={formData.country}
-                    className="form-control mb-3"
-                    onChange={handleChange}
-                    required
-                  >
+                  <select name="country" value={formData.country} className="form-control mb-3" onChange={handleChange} required>
                     <option value="">Country</option>
                     <option>India</option>
                     <option>USA</option>
@@ -241,13 +249,7 @@ function Registration() {
                 </div>
 
                 <div className="col-6">
-                  <select
-                    name="state"
-                    value={formData.state}
-                    className="form-control mb-3"
-                    onChange={handleChange}
-                    required
-                  >
+                  <select name="state" value={formData.state} className="form-control mb-3" onChange={handleChange} required>
                     <option value="">State</option>
                     <option>Maharashtra</option>
                     <option>Delhi</option>
@@ -255,20 +257,10 @@ function Registration() {
                 </div>
               </div>
 
-              <input
-                name="linkedin"
-                value={formData.linkedin}
-                className="form-control mb-3"
-                placeholder="LinkedIn URL"
-                onChange={handleChange}
-              />
+              <input name="linkedin" value={formData.linkedin} className="form-control mb-3" placeholder="LinkedIn URL" onChange={handleChange} />
 
-              <button
-                type="submit"
-                className="btn btn-warning w-100"
-                disabled={loading}
-              >
-                {loading ? "Sending OTP..." : "Register"}
+              <button type="submit" className="btn btn-warning w-100" disabled={!otpVerified || loading}>
+                {loading ? "Processing..." : "Register"}
               </button>
             </form>
 
