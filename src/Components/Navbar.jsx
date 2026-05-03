@@ -26,13 +26,16 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Changed text colors to dark for white background */}
+        
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link text-warning fw-semibold" to="/">Home</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link text-warning fw-semibold" to="/About">About</Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link text-warning fw-semibold" >Contact</button>
             </li>
           </ul>
 

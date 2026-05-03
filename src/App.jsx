@@ -9,6 +9,7 @@ import About from "./Components/About";
 import Footer from "./Components/Footer";
 import Benefits from "./Components/Benefit";
 import ExperianceForm from "./Components/ExperianceFrom";
+import Contact from "./Components/Contact";
 
 
 import ExperianceForm2 from "./Components/ExperianceFrom2";
@@ -29,9 +30,11 @@ function App() {
             <Benefits />
             <About/>
             <Card />
+            <Contact/>
           </>
         } />
           <Route path="/Home" element={<Home />} />
+          <Route path="/Contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Registration" element={<Registration />} />
         <Route path="/About" element={<About />} />

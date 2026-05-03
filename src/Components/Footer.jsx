@@ -9,24 +9,24 @@ function Footer() {
 
           <div className="col-md-3 mb-4">
             <h5>About Us</h5>
-            <p>MyWebsite is dedicated to providing the best services for our customers. We specialize in web development, design, and digital solutions.</p>
+            <p>a platform where users share real interview experiences to help job seekers prepare with practical insights. By building a community-driven knowledge base, we make interviews easier to understand and approach with confidence— for both freshers and experienced professionals.</p>
           </div>
 
           <div className="col-md-3 mb-4">
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
-              <li><Link to="/home" className="text-light text-decoration-none">Home</Link></li>
-              <li><Link to="#/about" className="text-light text-decoration-none">About</Link></li>
+              <li><Link to="/Home" className="text-light text-decoration-none">Home</Link></li>
+              <li><Link to="/About" className="text-light text-decoration-none">About</Link></li>
               <li><Link to="/services" className="text-light text-decoration-none">Services</Link></li>
-              <li><Link to="/contact" className="text-light text-decoration-none">Contact</Link></li>
+              <li><Link to="/Registration" className="text-light text-decoration-none">Registration</Link></li>
             </ul>
           </div>
 
           <div className="col-md-3 mb-4">
             <h5>Contact</h5>
-            <p><i className="bi bi-geo-alt-fill"></i> 123 Main Street, Mumbai, India</p>
+            <p><i className="bi bi-geo-alt-fill"></i> Unique System SKills,Kothrud Pune, India</p>
             <p><i className="bi bi-telephone-fill"></i> +91 9876543210</p>
-            <p><i className="bi bi-envelope-fill"></i> info@mywebsite.com</p>
+            <p><i className="bi bi-envelope-fill"></i> malusarenamrata88@gmail.com</p>
           </div>
 
           <div className="col-md-3 mb-4">

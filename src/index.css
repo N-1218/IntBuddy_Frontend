@@ -1,16 +1,16 @@
-/* 1. Animation for the Badges (More movement) */
+/*  Animation for the Badges (More movement) */
 @keyframes badgeFloat {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
 
-/* 2. Animation for the Text/Heading (Subtle movement + slight tilt) */
+/* Animation for the Text/Heading (Subtle movement + slight tilt) */
 @keyframes textFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-8px) rotate(0.5deg); }
 }
 
-/* 3. Helper Classes */
+/* Helper Classes */
 .float-infinite {
   animation: badgeFloat 4s ease-in-out infinite;
 }
