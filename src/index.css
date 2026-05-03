@@ -23,3 +23,9 @@
 .animate-heading-float {
   animation: badgeFloat 6s ease-in-out infinite;
 }
+.animated-text { animation: fadeUp 1s ease; }
+        .delay { animation-delay: 0.5s; }
+        @keyframes fadeUp {
+          from { opacity:0; transform:translateY(10px); }
+          to { opacity:1; transform:translateY(0); }
+        }

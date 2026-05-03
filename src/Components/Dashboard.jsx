@@ -6,9 +6,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function CustomerDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [user, setUser] = useState({
-    name: "Guest",
-    email: "",
-    phonenumber: ""
+    Full_Name: "Guest",
+    Email: "",
+    Contact_number: "",
+    Gender:"",
+    Country:"",
+    State:"",
+    LinkedIn_URl:"", 
   });
 
   const [offer, setOffer] = useState("");
@@ -96,9 +100,13 @@ function CustomerDashboard() {
               <div className="card p-4 shadow-sm">
                 <h5>User Details</h5>
                 <hr />
-                <p><strong>Name:</strong> {user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Phone:</strong> {user.phonenumber}</p>
+                <p><strong>Name:</strong> {user.Full_Name}</p>
+                <p><strong>Email:</strong> {user.Email}</p>
+                <p><strong>Phone:</strong> {user.Contact_number}</p>
+                <p><strong>Gender:</strong> {user.Gender}</p>
+                <p><strong>Country:</strong> {user.Country}</p>
+               <p><strong>State:</strong> {user.State}</p>
+                <p><strong>LinkedIn_URL:</strong> {user.LinkedIn_URl}</p>
               </div>
             )}
 
@@ -109,7 +117,6 @@ function CustomerDashboard() {
               </div>
             )}
 
-            {/* ✅ FORM STEP 1 */}
             {activeTab === "form" && (
               <div className="card p-4 shadow-sm">
 
@@ -117,7 +124,7 @@ function CustomerDashboard() {
 
                 <div className="row">
 
-                  {/* Anonymous */}
+             
                   <div className="col-12 mb-4">
                     <label className="fw-semibold">Stay anonymous?</label><br />
                     <label className="me-3">
@@ -193,7 +200,7 @@ function CustomerDashboard() {
               </div>
             )}
 
-            {/* ✅ FORM STEP 2 */}
+        
             {activeTab === "form2" && (
               <div className="card p-4 shadow-sm">
 
