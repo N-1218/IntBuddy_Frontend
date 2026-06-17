@@ -35,7 +35,7 @@ function Navbar() {
               <Link className="nav-link text-warning fw-semibold" to="/About">About</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link text-warning fw-semibold" >Contact</button>
+              <Link className="nav-link text-warning fw-semibold" to="/Contact" >Contact</Link>
             </li>
           </ul>
 
